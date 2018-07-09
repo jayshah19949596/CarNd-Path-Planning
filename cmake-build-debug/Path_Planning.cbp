@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="Path_Planning"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="C:/Users/jaysh/Desktop/SDCNDT2/CarND-Path-Planning-Project-master/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/msys64/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/jaysh/Desktop/SDCNDT2/CarND-Path-Planning-Project-master/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/msys64/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/jaysh/Desktop/SDCNDT2/CarND-Path-Planning-Project-master/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/msys64/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/jaysh/Desktop/SDCNDT2/CarND-Path-Planning-Project-master/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/msys64/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/jaysh/Desktop/SDCNDT2/CarND-Path-Planning-Project-master/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="path_planning">
+				<Option output="C:/Users/jaysh/Desktop/SDCNDT2/CarND-Path-Planning-Project-master/cmake-build-debug/path_planning.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/jaysh/Desktop/SDCNDT2/CarND-Path-Planning-Project-master/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/msys64/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.3.0/../../../../include/c++/7.3.0"/>
+					<Add directory="C:/msys64/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.3.0/../../../../include/c++/7.3.0/i686-w64-mingw32"/>
+					<Add directory="C:/msys64/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.3.0/../../../../include/c++/7.3.0/backward"/>
+					<Add directory="C:/msys64/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.3.0/include"/>
+					<Add directory="C:/msys64/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.3.0/../../../../include"/>
+					<Add directory="C:/msys64/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.3.0/include-fixed"/>
+					<Add directory="C:/msys64/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.3.0/../../../../i686-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/msys64/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/jaysh/Desktop/SDCNDT2/CarND-Path-Planning-Project-master/cmake-build-debug/Makefile&quot;  VERBOSE=1 path_planning"/>
+					<CompileFile command="C:/msys64/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/jaysh/Desktop/SDCNDT2/CarND-Path-Planning-Project-master/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/msys64/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/jaysh/Desktop/SDCNDT2/CarND-Path-Planning-Project-master/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/msys64/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/jaysh/Desktop/SDCNDT2/CarND-Path-Planning-Project-master/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="path_planning/fast">
+				<Option output="C:/Users/jaysh/Desktop/SDCNDT2/CarND-Path-Planning-Project-master/cmake-build-debug/path_planning.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/jaysh/Desktop/SDCNDT2/CarND-Path-Planning-Project-master/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="C:/msys64/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.3.0/../../../../include/c++/7.3.0"/>
+					<Add directory="C:/msys64/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.3.0/../../../../include/c++/7.3.0/i686-w64-mingw32"/>
+					<Add directory="C:/msys64/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.3.0/../../../../include/c++/7.3.0/backward"/>
+					<Add directory="C:/msys64/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.3.0/include"/>
+					<Add directory="C:/msys64/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.3.0/../../../../include"/>
+					<Add directory="C:/msys64/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.3.0/include-fixed"/>
+					<Add directory="C:/msys64/mingw32/bin/../lib/gcc/i686-w64-mingw32/7.3.0/../../../../i686-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/msys64/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/jaysh/Desktop/SDCNDT2/CarND-Path-Planning-Project-master/cmake-build-debug/Makefile&quot;  VERBOSE=1 path_planning/fast"/>
+					<CompileFile command="C:/msys64/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/jaysh/Desktop/SDCNDT2/CarND-Path-Planning-Project-master/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/msys64/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/jaysh/Desktop/SDCNDT2/CarND-Path-Planning-Project-master/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/msys64/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/jaysh/Desktop/SDCNDT2/CarND-Path-Planning-Project-master/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="C:/Users/jaysh/Desktop/SDCNDT2/CarND-Path-Planning-Project-master/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/msys64/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/jaysh/Desktop/SDCNDT2/CarND-Path-Planning-Project-master/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/msys64/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/jaysh/Desktop/SDCNDT2/CarND-Path-Planning-Project-master/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/msys64/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/jaysh/Desktop/SDCNDT2/CarND-Path-Planning-Project-master/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/msys64/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/jaysh/Desktop/SDCNDT2/CarND-Path-Planning-Project-master/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="C:/Users/jaysh/Desktop/SDCNDT2/CarND-Path-Planning-Project-master/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/msys64/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/jaysh/Desktop/SDCNDT2/CarND-Path-Planning-Project-master/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/msys64/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/jaysh/Desktop/SDCNDT2/CarND-Path-Planning-Project-master/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/msys64/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/jaysh/Desktop/SDCNDT2/CarND-Path-Planning-Project-master/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/msys64/mingw32/bin/mingw32-make.exe -f &quot;C:/Users/jaysh/Desktop/SDCNDT2/CarND-Path-Planning-Project-master/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="C:/Users/jaysh/Desktop/SDCNDT2/CarND-Path-Planning-Project-master/src/BehaviorPlanner.cpp">
+			<Option target="path_planning"/>
+		</Unit>
+		<Unit filename="C:/Users/jaysh/Desktop/SDCNDT2/CarND-Path-Planning-Project-master/src/BehaviorPlanner.h">
+			<Option target="path_planning"/>
+		</Unit>
+		<Unit filename="C:/Users/jaysh/Desktop/SDCNDT2/CarND-Path-Planning-Project-master/src/PredictionComponent.cpp">
+			<Option target="path_planning"/>
+		</Unit>
+		<Unit filename="C:/Users/jaysh/Desktop/SDCNDT2/CarND-Path-Planning-Project-master/src/PredictionComponent.h">
+			<Option target="path_planning"/>
+		</Unit>
+		<Unit filename="C:/Users/jaysh/Desktop/SDCNDT2/CarND-Path-Planning-Project-master/src/main.cpp">
+			<Option target="path_planning"/>
+		</Unit>
+		<Unit filename="C:/Users/jaysh/Desktop/SDCNDT2/CarND-Path-Planning-Project-master/src/spline.h">
+			<Option target="path_planning"/>
+		</Unit>
+		<Unit filename="C:/Users/jaysh/Desktop/SDCNDT2/CarND-Path-Planning-Project-master/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

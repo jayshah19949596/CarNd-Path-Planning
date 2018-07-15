@@ -1,140 +1,171 @@
 # CarND-Path-Planning-Project
-Self-Driving Car Engineer Nanodegree Program
-   
-### Simulator.
-You can download the Term3 Simulator which contains the Path Planning Project from the [releases tab (https://github.com/udacity/self-driving-car-sim/releases/tag/T3_v1.2).
 
-### Goals
-In this project your goal is to safely navigate around a virtual highway with other traffic that is driving +-10 MPH of the 50 MPH speed limit. You will be provided the car's localization and sensor fusion data, there is also a sparse map list of waypoints around the highway. The car should try to go as close as possible to the 50 MPH speed limit, which means passing slower traffic when possible, note that other cars will try to change lanes too. The car should avoid hitting other cars at all cost as well as driving inside of the marked road lanes at all times, unless going from one lane to another. The car should be able to make one complete loop around the 6946m highway. Since the car is trying to go 50 MPH, it should take a little over 5 minutes to complete 1 loop. Also the car should not experience total acceleration over 10 m/s^2 and jerk that is greater than 10 m/s^3.
+This repository contains C++ code for implementation of Path Planner. This path of waypoints is used to fed to the controller module of a car running on a highway. This task was implemented to partially fulfill Term-III goals of Udacity's self driving car nanodegree program.
 
-#### The map of the highway is in data/highway_map.txt
-Each waypoint in the list contains  [x,y,s,dx,dy] values. x and y are the waypoint's map coordinate position, the s value is the distance along the road to get to that waypoint in meters, the dx and dy values define the unit normal vector pointing outward of the highway loop.
 
-The highway's waypoints loop around so the frenet s value, distance along the road, goes from 0 to 6945.554.
+## Background
 
-## Basic Build Instructions
+A critical module in the working of a self driving car system is the path planning module. It is essentially the brain of the whole eco system. Path planning module derives the path to be followed by car ahead of time. This path has information on mostly position and velocity of the car in the future. This information acts as an input to the controller module. The controller modules then ensures there is minimum deviation in the planned path and the executed path.
 
-1. Clone this repo.
-2. Make a build directory: `mkdir build && cd build`
-3. Compile: `cmake .. && make`
-4. Run it: `./path_planning`.
+Following parameters serve as an input to the path planning module:
+  1. Map of the environment with start and goal location. This is the global map having information on the best possible route from the start to the destination.
+  2. Local map of th environment. This map is a subset and a more detailed version of the global map and has information about the landmarks in the area surrounded by car. This map changes when the car moves.
+  3. Position of the other vehicles, pedestrians, animals, traffic lights, etc. in the local map. This information is deduced by creating point clouds from the data received from sensor fusion module.
+  4. Current position of the car in the local map. This is derived by the localisation module.
+  
+Information from all the inputs is then used to perfom following tasks:
+  1. Prediction - This involves predicting the behavior of car and other elements in the surrounding
+  2. Behavior planning - This involves plannning the possible states of the car. For e.g.: Acceleration, Deceleration, lane change, left and right turns, etc.
+  3. Trajectory planning - This involves determining the trajectory of the car for a few meters ahead of it based on the speed limit, traffic and capabilities of the car.
+  
 
-Here is the data provided from the Simulator to the C++ Program
+## Working of Path Planning Module
 
-#### Main car's localization Data (No Noise)
+Path planner assumes that the controller module of car is loss less and that it follows the trajectory perfectly. Hence, a working implementation of path planner is responsible for:
 
-["x"] The car's x position in map coordinates
+  1. Creating smooth transition path from current location of the few meters ahead towards the goal
+  2. Providing discrete waypoints having information on the desired velocity of the car at that location
+  3. Updation of the path in real time based on changes in the environment
 
-["y"] The car's y position in map coordinates
 
-["s"] The car's s position in frenet coordinates
+## Project Goal
 
-["d"] The car's d position in frenet coordinates
+The goal of this project was to design a path planner that is able to create smooth, safe paths for the car to follow along a 3 lane highway with traffic. A successful path planner should be able to keep inside its lane, avoid hitting other cars, and pass slower moving traffic all by using localization, sensor fusion, and map data.
 
-["yaw"] The car's yaw angle in the map
 
-["speed"] The car's speed in MPH
+## Project Implementation
 
-#### Previous path data given to the Planner
+Simulation of a circular track was achieved in the [Udacity's self driving car simulator](https://github.com/udacity/self-driving-car-sim/releases/tag/T3_v1.2). While Path planner was implmented in C++, the simulator communicated to C++ code with the help of [uWebSockets library](https://github.com/uNetworking/uWebSockets). Following parameters were received from the simulator for each communication ping:
 
-//Note: Return the previous list but with processed points removed, can be a nice tool to show how far along
-the path has processed since last time. 
+### Main car's localization Data (No Noise)
 
-["previous_path_x"] The previous list of x points previously given to the simulator
+("x") The car's x position in map coordinates
 
-["previous_path_y"] The previous list of y points previously given to the simulator
+("y") The car's y position in map coordinates
 
-#### Previous path's end s and d values 
+("s") The car's s position in frenet coordinates
 
-["end_path_s"] The previous list's last point's frenet s value
+("d") The car's d position in frenet coordinates
 
-["end_path_d"] The previous list's last point's frenet d value
+("yaw") The car's yaw angle in the map
 
-#### Sensor Fusion Data, a list of all other car's attributes on the same side of the road. (No Noise)
+("speed") The car's speed in MPH
 
-["sensor_fusion"] A 2d vector of cars and then that car's [car's unique ID, car's x position in map coordinates, car's y position in map coordinates, car's x velocity in m/s, car's y velocity in m/s, car's s position in frenet coordinates, car's d position in frenet coordinates. 
+### Previous path data given to the Planner
 
-## Details
+//Note: Return the previous list but with processed points removed, can be a nice tool to show how far along the path has processed since last time.
 
-1. The car uses a perfect controller and will visit every (x,y) point it recieves in the list every .02 seconds. The units for the (x,y) points are in meters and the spacing of the points determines the speed of the car. The vector going from a point to the next point in the list dictates the angle of the car. Acceleration both in the tangential and normal directions is measured along with the jerk, the rate of change of total Acceleration. The (x,y) point paths that the planner recieves should not have a total acceleration that goes over 10 m/s^2, also the jerk should not go over 50 m/s^3. (NOTE: As this is BETA, these requirements might change. Also currently jerk is over a .02 second interval, it would probably be better to average total acceleration over 1 second and measure jerk from that.
+("previous_path_x") The previous list of x points previously given to the simulator
 
-2. There will be some latency between the simulator running and the path planner returning a path, with optimized code usually its not very long maybe just 1-3 time steps. During this delay the simulator will continue using points that it was last given, because of this its a good idea to store the last points you have used so you can have a smooth transition. previous_path_x, and previous_path_y can be helpful for this transition since they show the last points given to the simulator controller with the processed points already removed. You would either return a path that extends this previous path or make sure to create a new path that has a smooth transition with this last path.
+("previous_path_y") The previous list of y points previously given to the simulator
 
-## Tips
+Previous path's end s and d values
+("end_path_s") The previous list's last point's frenet s value
 
-A really helpful resource for doing this project and creating smooth trajectories was using http://kluge.in-chemnitz.de/opensource/spline/, the spline function is in a single hearder file is really easy to use.
+("end_path_d") The previous list's last point's frenet d value
 
----
+Sensor Fusion Data, a list of all other car's attributes on the same side of the road. (No Noise)
+("sensor_fusion") A 2d vector of cars and then that car's (car's unique ID, car's x position in map coordinates, car's y position in map coordinates, car's x velocity in m/s, car's y velocity in m/s, car's s position in frenet coordinates, car's d position in frenet coordinates).
 
-## Dependencies
+The final implementation consisted of following major steps:
+
+  ### 1. Creation of smooth trajectory ahead of car
+  
+  In this step, C++ [spline tool](http://kluge.in-chemnitz.de/opensource/spline/) was used to interpolate a smooth curve out of 5 anchor points defined on the path ahead of the car. The 5 anchor points were chosen as follows:
+  
+  a. A point behind current car's location
+  b. Current location of car
+  c. Point ahead of car by 30m
+  d. Point ahead of car by 60m
+  e. Point ahead of car by 90m
+
+  The speed limit for car was 50 MPH. Hence, the path planner followed a safe speed limit of 48 MPH and determined 30 waypoints ahead of car on the smooth curve by spline.
+  
+  C++ code for this task is implemented from line 375 to line 503 in main.cpp.
+  
+  
+  ### 2. Prediction of behavior of other cars on the highway
+  
+  In this step, sensor fusion data passed by simulator was used to find cars ahead, in the right lane and in the left lane of the car.   Following were the flags raised to warn the path planner of the behavior of others cars on the same side of the road:
+  
+  a. is_car_ahead - This flag was raised when the self driving car was approaching a car ahead of it in the same lane and the distance between them was less than 30m
+  b. is_car_right - This flag was raised when cars in the lane to the right of self driving car were either in the range of 30m ahead or 15m behind
+  c. is_car_left - This flag was raised when cars in the lane to the left of self driving car were either in the range of 30m ahead or 15m behind
+  
+  This information was prepared to be consumed by the behavior planner. Behavior of cars on the other side of the road were ignored for the scope of this project.
+  
+  C++ code for this task is implemented from line 283 to line 339 in main.cpp.
+
+  ### 3. Determination of behavior of self driving car
+  
+  In this step, the car followed a less complex version of finite state machine having following states:
+  
+  a. Accelerate - Continue in current lane and accelerate reaching speed limit
+  b. Decelerate - Slow down in current lane in order to avoid collision with car ahead
+  c. Lane change Left - Change lane to left with current speed if not in leftmost lane
+  d. Lane change RIght - Change lane to right with current speed if not in rightmost lane
+  
+  This information was prepared to be consumed by the trajectory planner to enhance the basic trajectory already devised in step 1.
+  
+
+  
+## Steps for building the project
+
+### Dependencies
 
 * cmake >= 3.5
-  * All OSes: [click here for installation instructions](https://cmake.org/install/)
-* make >= 4.1
+ * All OSes: [click here for installation instructions](https://cmake.org/install/)
+ * Linux and Mac OS, you can also skip to installation of uWebSockets as it installs it as a dependency.
+ 
+* make >= 4.1(mac, Linux), 3.81(Windows)
   * Linux: make is installed by default on most Linux distros
   * Mac: [install Xcode command line tools to get make](https://developer.apple.com/xcode/features/)
   * Windows: [Click here for installation instructions](http://gnuwin32.sourceforge.net/packages/make.htm)
+  * Linux and Mac OS, you can also skip to installation of uWebSockets as it installs it as a dependency.
+  
 * gcc/g++ >= 5.4
   * Linux: gcc / g++ is installed by default on most Linux distros
   * Mac: same deal as make - [install Xcode command line tools]((https://developer.apple.com/xcode/features/)
   * Windows: recommend using [MinGW](http://www.mingw.org/)
+  * Linux and Mac OS, you can also skip to installation of uWebSockets as it installs it as a dependency.
+  
 * [uWebSockets](https://github.com/uWebSockets/uWebSockets)
-  * Run either `install-mac.sh` or `install-ubuntu.sh`.
+  * Run either `install-mac.sh` or `install-ubuntu.sh`. This will install cmake, make gcc/g++ too.
   * If you install from source, checkout to commit `e94b6e1`, i.e.
     ```
     git clone https://github.com/uWebSockets/uWebSockets 
     cd uWebSockets
     git checkout e94b6e1
     ```
+    Some function signatures have changed in v0.14.x.
+    
+* Fortran Compiler
+  * Mac: `brew install gcc` (might not be required)
+  * Linux: `sudo apt-get install gfortran`. Additionally you have also have to install gcc and g++, `sudo apt-get install gcc g++`. Look in [this Dockerfile](https://github.com/udacity/CarND-MPC-Quizzes/blob/master/Dockerfile) for more info.
+  
+* [Ipopt](https://projects.coin-or.org/Ipopt)
+  * If challenges to installation are encountered (install script fails).  Please review this thread for tips on installing Ipopt.
+  * Mac: `brew install ipopt`
+  * Linux
+    * You will need a version of Ipopt 3.12.1 or higher. The version available through `apt-get` is 3.11.x. If you can get that version to work great but if not there's a script `install_ipopt.sh` that will install Ipopt. You just need to download the source from the Ipopt [releases page](https://www.coin-or.org/download/source/Ipopt/).
+    * Then call `install_ipopt.sh` with the source directory as the first argument, ex: `sudo bash install_ipopt.sh Ipopt-3.12.1`. 
+  * Windows: If you can use the Linux subsystem and follow the Linux instructions or use Docker environment.
+  
+* [CppAD](https://www.coin-or.org/CppAD/)
+  * Mac: `brew install cppad`
+  * Linux `sudo apt-get install cppad` or equivalent.
+  * Windows: If you can use the Linux subsystem and follow the Linux instructions or use Docker environment.
 
-## Editor Settings
+* Simulator. You can download these from the [Udacity simulator releases tab](https://github.com/udacity/self-driving-car-sim/releases).
 
-We've purposefully kept editor configuration files out of this repo in order to
-keep it as simple and environment agnostic as possible. However, we recommend
-using the following settings:
+### Running the project in Ubuntu
 
-* indent using spaces
-* set tab width to 2 spaces (keeps the matrices in source code aligned)
-
-## Code Style
-
-Please (do your best to) stick to [Google's C++ style guide](https://google.github.io/styleguide/cppguide.html).
-
-## Project Instructions and Rubric
-
-Note: regardless of the changes you make, your project must be buildable using
-cmake and make!
-
-
-## Call for IDE Profiles Pull Requests
-
-Help your fellow students!
-
-We decided to create Makefiles with cmake to keep this project as platform
-agnostic as possible. Similarly, we omitted IDE profiles in order to ensure
-that students don't feel pressured to use one IDE or another.
-
-However! I'd love to help people get up and running with their IDEs of choice.
-If you've created a profile for an IDE that you think other students would
-appreciate, we'd love to have you add the requisite profile files and
-instructions to ide_profiles/. For example if you wanted to add a VS Code
-profile, you'd add:
-
-* /ide_profiles/vscode/.vscode
-* /ide_profiles/vscode/README.md
-
-The README should explain what the profile does, how to take advantage of it,
-and how to install it.
-
-Frankly, I've never been involved in a project with multiple IDE profiles
-before. I believe the best way to handle this would be to keep them out of the
-repo root to avoid clutter. My expectation is that most profiles will include
-instructions to copy files to a new location to get picked up by the IDE, but
-that's just a guess.
-
-One last note here: regardless of the IDE used, every submitted project must
-still be compilable with cmake and make./
-
-## How to write a README
-A well written README file can enhance your project and portfolio.  Develop your abilities to create professional README files by completing [this free course](https://www.udacity.com/course/writing-readmes--ud777).
-
+  1. Check the dependencies section for installation of gcc, g++, cmake, make, uWebsocketIO API, CppAd and Ipopt library.
+  
+  2. Manually build the project and run using:
+    a. mkdir build && cd build
+    b. cmake ..
+    c. make
+    d. ./path-planning
+    
+  3. Run the Udacity simulator and check the results

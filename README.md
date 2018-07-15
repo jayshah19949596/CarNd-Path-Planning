@@ -85,7 +85,7 @@ The final implementation consisted of following major steps:
   
   ### 2. Prediction of behavior of other cars on the highway
   
-  The implementation details of Prediction Component is in PredictionComponent.cpp file. Following were the flags raised to warn   the path planner of the behavior of others cars on the same side of the road:  
+  The implementation details of Prediction Component is in [PredictionComponent.cpp](https://github.com/jayshah19949596/CarNd-Path-Planning/blob/master/src/PredictionComponent.cpp) file. Following were the flags raised to warn   the path planner of the behavior of others cars on the same side of the road:  
   
   a. is_car_ahead - This flag was raised when the self driving car was approaching a car ahead of it in the same lane and the distance between them was less than 30m   
   b. is_car_right - This flag was raised when cars in the lane to the right of self driving car were either in the range of 30m ahead or 15m behind   
@@ -94,7 +94,7 @@ The final implementation consisted of following major steps:
 
   ### 3. Determination of behavior of self driving car
   
-  The implementation details of Behavior Planning is in BehaviorPlanner.cpp file. The car has following behavior:  
+  The implementation details of Behavior Planning is in [BehaviorPlanner.cpp](https://github.com/jayshah19949596/CarNd-Path-Planning/blob/master/src/BehaviorPlanner.cpp) file. The car has following behavior:  
 
   a. Accelerate - Continue in current lane and accelerate reaching speed limit   
   b. Decelerate - Slow down in current lane in order to avoid collision with car ahead   

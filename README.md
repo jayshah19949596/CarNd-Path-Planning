@@ -1,6 +1,6 @@
-# CarND-Path-Planning-Project
+# Path-Planning-Project
 
-This repository contains C++ code for implementation of Path Planner. This path of waypoints is used to fed to the controller module of a car running on a highway. This task was implemented to partially fulfill Term-III goals of Udacity's self driving car nanodegree program.
+This repository contains C++ code for implementation of Path Planner. 
 
 
 ## Background

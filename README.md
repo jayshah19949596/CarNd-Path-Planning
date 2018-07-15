@@ -81,31 +81,28 @@ The final implementation consisted of following major steps:
 
   The speed limit for car was 50 MPH. Hence, the path planner followed a safe speed limit of 48 MPH and determined 30 waypoints ahead of car on the smooth curve by spline.
   
-  C++ code for this task is implemented from line 375 to line 503 in main.cpp.
   
   
   ### 2. Prediction of behavior of other cars on the highway
   
-  In this step, sensor fusion data passed by simulator was used to find cars ahead, in the right lane and in the left lane of the car.   Following were the flags raised to warn the path planner of the behavior of others cars on the same side of the road:
+  The implementation details of Prediction Component is in PredictionComponent.cpp file. Following were the flags raised to warn   the path planner of the behavior of others cars on the same side of the road:  
   
-  a. is_car_ahead - This flag was raised when the self driving car was approaching a car ahead of it in the same lane and the distance between them was less than 30m
-  b. is_car_right - This flag was raised when cars in the lane to the right of self driving car were either in the range of 30m ahead or 15m behind
-  c. is_car_left - This flag was raised when cars in the lane to the left of self driving car were either in the range of 30m ahead or 15m behind
+  a. is_car_ahead - This flag was raised when the self driving car was approaching a car ahead of it in the same lane and the distance between them was less than 30m   
+  b. is_car_right - This flag was raised when cars in the lane to the right of self driving car were either in the range of 30m ahead or 15m behind   
+  c. is_car_left - This flag was raised when cars in the lane to the left of self driving car were either in the range of 30m ahead or 15m behind   
   
-  This information was prepared to be consumed by the behavior planner. Behavior of cars on the other side of the road were ignored for the scope of this project.
-  
-  C++ code for this task is implemented from line 283 to line 339 in main.cpp.
 
   ### 3. Determination of behavior of self driving car
   
-  In this step, the car followed a less complex version of finite state machine having following states:
+  The implementation details of Behavior Planning is in BehaviorPlanner.cpp file. The car has following behavior:  
+
+  a. Accelerate - Continue in current lane and accelerate reaching speed limit   
+  b. Decelerate - Slow down in current lane in order to avoid collision with car ahead   
+  c. Lane change Left - Change lane to left with current speed if not in leftmost lane   
+  d. Lane change RIght - Change lane to right with current speed if not in rightmost lane   
   
-  a. Accelerate - Continue in current lane and accelerate reaching speed limit
-  b. Decelerate - Slow down in current lane in order to avoid collision with car ahead
-  c. Lane change Left - Change lane to left with current speed if not in leftmost lane
-  d. Lane change RIght - Change lane to right with current speed if not in rightmost lane
-  
-  This information was prepared to be consumed by the trajectory planner to enhance the basic trajectory already devised in step 1.
+  One of the above behavior is determined based on the flags **is_car_ahead, is_car_right, is_car_left**. 
+  The Behavior Planner uses the results from Prediction Component to choose a behavior.
   
 
   

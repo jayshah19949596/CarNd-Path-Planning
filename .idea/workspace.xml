@@ -11,7 +11,9 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="67f0f832-9550-4d94-9611-ff5ab17fc142" name="Default" comment="" />
+    <list default="true" id="67f0f832-9550-4d94-9611-ff5ab17fc142" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -41,8 +43,8 @@
       <file leaf-file-name="BehaviorPlanner.cpp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/BehaviorPlanner.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="150">
-              <caret line="7" column="15" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="15" />
+            <state relative-caret-position="500">
+              <caret line="21" column="49" lean-forward="true" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -238,12 +240,12 @@
       <workItem from="1531085571693" duration="10899000" />
       <workItem from="1531416397367" duration="592000" />
       <workItem from="1531456027730" duration="343000" />
-      <workItem from="1531696233027" duration="276000" />
+      <workItem from="1531696233027" duration="1059000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35401000" />
+    <option name="totallyTimeSpent" value="36184000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1102" extended-state="6" />
@@ -637,8 +639,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/BehaviorPlanner.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="7" column="15" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="15" />
+        <state relative-caret-position="500">
+          <caret line="21" column="49" lean-forward="true" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
           <folding />
         </state>
       </provider>
